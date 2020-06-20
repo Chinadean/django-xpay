@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from djangoxpay import views
+from . import serializers
 
-# Create your views here.
+
+class PaymentView(views.APIView):
+    serializer_class = serializers.PaymentSerializer

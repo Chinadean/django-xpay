@@ -9,7 +9,7 @@ verify_ssl = true
 django-rest-xauth = "*"
 stripe = "*"
 braintree = "*"
-square = "*"
+squareup = "*"
 django-extensions = "*"
 
 [requires]

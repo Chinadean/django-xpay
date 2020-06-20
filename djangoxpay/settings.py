@@ -181,6 +181,6 @@ PAYMENT = {
         'API_KEY': os.environ.get('STRIPE_API_KEY', ),
     },
     'SQUARE': {
-
+        'ACCESS_TOKEN': os.environ.get('SQUARE_ACCESS_TOKEN', ),
     },
 }

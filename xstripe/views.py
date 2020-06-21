@@ -4,7 +4,7 @@ from djangoxpay import views
 from .serializers import ClientSecretSerializer
 
 
-class ClientSecretView(views.APIView):
+class ClientSecretView(views.CreateAPIView):
     serializer_class = ClientSecretSerializer
 
     def post(self, request, format=None):

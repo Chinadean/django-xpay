@@ -6,7 +6,7 @@ from djangoxpay import views
 from . import serializers
 
 
-class PaymentView(views.APIView):
+class PaymentView(views.CreateAPIView):
     serializer_class = serializers.PaymentSerializer
 
     def post(self, request, format=None):

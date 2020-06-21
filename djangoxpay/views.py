@@ -3,29 +3,44 @@ import json
 from rest_framework import permissions, status
 from rest_framework import views
 from rest_framework.response import Response
+from xauth.utils import valid_str
 
 
-class APIView(views.APIView):
+class BaseAPIView(views.APIView):
     permission_classes = [permissions.AllowAny, ]
     serializer_class = None
 
-    def post(self, request, format=None):
+    @staticmethod
+    def process_request(serializer):
         try:
-            serializer = self.serializer_class(data=request.data)
-            if serializer.is_valid(raise_exception=True):
+            if serializer.is_valid():
                 serializer.save()
-                response = Response(
-                    data=serializer.data,
-                    status=status.HTTP_200_OK,
-                )
+                response = Response(data=serializer.data, status=status.HTTP_200_OK, )
             else:
-                response = Response(
-                    data=serializer.errors,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
+                raise Exception(serializer.errors)
         except Exception as e:
+            first_error = e.args[0]
             response = Response(
-                data={'error': json.dumps(e.args[0]), },
+                data={
+                    'error': first_error if valid_str(first_error) else json.dumps(first_error),
+                    'metadata': e.args,
+                },
                 status=status.HTTP_400_BAD_REQUEST,
             )
         return response
+
+
+class CreateAPIView(BaseAPIView):
+    def post(self, request, format=None):
+        serializer = self.serializer_class(data=request.data)
+        return self.process_request(serializer)
+
+
+class RetrieveAPIView(BaseAPIView):
+    def get(self, request, format=None):
+        serializer = self.serializer_class(data=request.data or request.query_params)
+        return self.process_request(serializer)
+
+
+class CreateRetrieveAPIView(CreateAPIView, RetrieveAPIView):
+    pass

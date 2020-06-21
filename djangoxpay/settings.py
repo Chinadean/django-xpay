@@ -175,7 +175,9 @@ PAYMENT = {
         'SECURITY_CREDENTIALS': os.environ.get('MPESA_SECURITY_CREDENTIALS', ),
     },
     'BRAINTREE': {
-
+        'MERCHANT_ID': os.environ.get('BRAINTREE_MERCHANT_ID', ),
+        'PUBLIC_KEY': os.environ.get('BRAINTREE_PUBLIC_KEY', ),
+        'PRIVATE_KEY': os.environ.get('BRAINTREE_PRIVATE_KEY', ),
     },
     'STRIPE': {
         'API_KEY': os.environ.get('STRIPE_API_KEY', ),

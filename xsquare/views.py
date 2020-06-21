@@ -21,4 +21,9 @@ class PaymentView(views.APIView):
                 },
                 status=status.HTTP_412_PRECONDITION_FAILED,
             )
+        elif 'payment' in data:
+            response = Response(
+                data=data.get('payment', ),
+                status=status.HTTP_200_OK,
+            )
         return get_wrapped_response(response)

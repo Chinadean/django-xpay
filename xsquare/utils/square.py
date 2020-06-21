@@ -17,4 +17,6 @@ class Square:
         body['idempotency_key'] = uuid4().hex
         if body.get('app_fee_money') is None:
             body.pop('app_fee_money')
+        if body.get('source_id') is None:
+            body['source_id'] = "cnon:card-nonce-ok"  # used in test/sandbox
         return self.client.payments.create_payment(body=body, )

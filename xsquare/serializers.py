@@ -32,7 +32,8 @@ class PaymentSerializer(serializers.Serializer):
         max_length=500, allow_blank=True, allow_null=True, write_only=True, default=None,
         help_text='from square developer dashboard(blank will use value from settings)'
     )
-    nonce = serializers.CharField(max_length=500, allow_blank=False, allow_null=False, write_only=True, )
+    nonce = serializers.CharField(max_length=100, allow_blank=False, allow_null=False, write_only=True,
+                                  default='cnon:card-nonce-ok', )
     location_id = serializers.CharField(max_length=50, allow_blank=True, allow_null=True, write_only=True,
                                         default=None, )
     body = serializers.DictField(allow_empty=True, allow_null=True, default=__DEFAULT_BODY, write_only=True, )
@@ -46,7 +47,7 @@ class PaymentSerializer(serializers.Serializer):
             app_fee_money = json.loads(json.dumps(instance.pop('app_fee_money')))
             body['app_fee_money'] = Money(**app_fee_money).json
         body['autocomplete'] = instance.pop('autocomplete') if 'autocomplete' in instance else True
-        nonce = instance.get('nonce', body.get('source_id', ))
+        nonce = instance.get('nonce', body.get('source_id', 'cnon:card-nonce-ok'))
         body['source_id'] = nonce
         access_token = instance.pop('access_token') if 'access_token' in instance else None
         production = instance.pop('production') if 'production' in instance else False

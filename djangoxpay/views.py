@@ -3,7 +3,6 @@ import json
 from rest_framework import permissions, status
 from rest_framework import views
 from rest_framework.response import Response
-from xauth.utils import get_wrapped_response
 
 
 class APIView(views.APIView):
@@ -15,9 +14,18 @@ class APIView(views.APIView):
             serializer = self.serializer_class(data=request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
-                response = Response(data=serializer.data, status=status.HTTP_200_OK, )
+                response = Response(
+                    data=serializer.data,
+                    status=status.HTTP_200_OK,
+                )
             else:
-                response = Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST, )
+                response = Response(
+                    data=serializer.errors,
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
         except Exception as e:
-            response = Response(data={'error': json.dumps(e.args[0]), }, status=status.HTTP_400_BAD_REQUEST, )
-        return get_wrapped_response(response)
+            response = Response(
+                data={'error': json.dumps(e.args[0]), },
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+        return response

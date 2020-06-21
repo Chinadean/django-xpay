@@ -25,7 +25,7 @@ class PaymentSerializer(serializers.Serializer):
         "note": "Brief description"
     }
     amount_money = MoneySerializer(write_only=True, )
-    app_fee_money = MoneySerializer(write_only=True, )
+    app_fee_money = MoneySerializer(write_only=True, allow_null=True, )
     production = serializers.BooleanField(write_only=True, default=False, )
     autocomplete = serializers.BooleanField(write_only=True, default=True, )
     access_token = serializers.CharField(
@@ -35,20 +35,28 @@ class PaymentSerializer(serializers.Serializer):
     nonce = serializers.CharField(max_length=500, allow_blank=False, allow_null=False, write_only=True, )
     location_id = serializers.CharField(max_length=50, allow_blank=True, allow_null=True, write_only=True,
                                         default=None, )
-    body = serializers.DictField(allow_empty=True, allow_null=True, default=__DEFAULT_BODY, )
+    body = serializers.DictField(allow_empty=True, allow_null=True, default=__DEFAULT_BODY, write_only=True, )
+
+    def to_representation(self, instance):
+        body = instance.get('body', self.__DEFAULT_BODY)
+        if 'amount_money' in instance:
+            amount_money = json.loads(json.dumps(instance.pop('amount_money')))
+            body['amount_money'] = Money(**amount_money).json
+        if 'app_fee_money' in instance:
+            app_fee_money = json.loads(json.dumps(instance.pop('app_fee_money')))
+            body['app_fee_money'] = Money(**app_fee_money).json
+        body['autocomplete'] = instance.pop('autocomplete') if 'autocomplete' in instance else True
+        nonce = instance.get('nonce', body.get('source_id', ))
+        body['source_id'] = nonce
+        access_token = instance.pop('access_token') if 'access_token' in instance else None
+        production = instance.pop('production') if 'production' in instance else False
+        return square.Square(
+            access_token=access_token,
+            production=production,
+        ).create_payment(nonce, body).body
 
     def update(self, instance, validated_data):
         pass
 
     def create(self, validated_data):
-        body = validated_data.get('body', self.__DEFAULT_BODY)
-        body['amount_money'] = json.loads(
-            json.dumps(validated_data.pop('amount_money'))) if 'amount_money' in validated_data else None
-        body['app_fee_money'] = json.loads(
-            json.dumps(validated_data.pop('app_fee_money'))) if 'app_fee_money' in validated_data else None
-        body['autocomplete'] = validated_data.pop('autocomplete') if 'autocomplete' in validated_data else True
-        nonce = validated_data.get('nonce', body.get('source_id', ))
-        body['source_id'] = nonce
-        access_token = validated_data.pop('access_token') if 'access_token' in validated_data else None
-        production = validated_data.pop('production') if 'production' in validated_data else False
-        return square.Square(access_token=access_token, production=production).create_payment(nonce, body)
+        return validated_data

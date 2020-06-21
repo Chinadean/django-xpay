@@ -15,4 +15,6 @@ class Square:
 
     def create_payment(self, nonce, body: dict):
         body['idempotency_key'] = uuid4().hex
+        if body.get('app_fee_money') is None:
+            body.pop('app_fee_money')
         return self.client.payments.create_payment(body=body, )

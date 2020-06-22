@@ -1,4 +1,5 @@
 import braintree
+from braintree import SuccessfulResult, ErrorResult
 from django.conf import settings
 from xauth.utils import valid_str
 
@@ -37,7 +38,7 @@ class Braintree:
         return self.gateway.client_token.generate(params)
 
     def confirm_payment(self, nonce, amount, device_data=None, ):
-        return self.gateway.transaction.sale({
+        result = self.gateway.transaction.sale({
             "amount": str(amount),
             "payment_method_nonce": nonce,
             "device_data": device_data,
@@ -45,3 +46,9 @@ class Braintree:
                 "submit_for_settlement": True,
             }
         })
+
+        if isinstance(result, SuccessfulResult):
+            result = {"success": "payment was successful"}
+        elif isinstance(result, ErrorResult):
+            result = {"error": result.message, "metadata": result.errors.errors.data}
+        return result

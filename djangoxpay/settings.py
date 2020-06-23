@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'yjce%7=z^lk^eix^b7r&9b94vhda))3ue=$%e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.2', '127.0.0.1', ]
+ALLOWED_HOSTS = list(filter(lambda x: len(x) > 0, os.environ.get('ALLOWED_HOSTS', '').split(',')))
 
 # Application definition
 

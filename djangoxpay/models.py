@@ -27,6 +27,6 @@ class Money(BaseModel):
         'vuv', 'wst', 'xaf', 'xcd', 'xof', 'xpf', 'yer', 'zar', 'zmw', 'eek', 'lvl', 'svc', 'vef', 'ltl',
     ], ))
 
-    def __init__(self, amount, currency: str = 'USD', ):
-        self.amount = round(float(amount) * 100)  # x 100 converts amount to cents
+    def __init__(self, amount, currency: str = 'USD', lowest_value: bool = False):
+        self.amount = round(float(amount) * (1 if lowest_value else 100))  # x 100 converts amount to cents
         self.currency = currency

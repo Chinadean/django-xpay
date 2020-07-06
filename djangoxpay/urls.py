@@ -14,14 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, re_path
 
 urlpatterns = [
-    path('accounts/', include('xauth.urls', namespace='xauth')),
-    path('stripe/', include('xstripe.urls', namespace='stripe')),
-    path('square/', include('xsquare.urls', namespace='square')),
-    path('braintree/', include('xbraintree.urls', namespace='braintree')),
-    path('mpesa/', include('xmpesa.urls', namespace='mpesa')),
-    path('admin/', admin.site.urls),
-    path('admin-api/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path(r'^accounts/', include('xauth.urls', namespace='xauth')),
+    re_path(r'^stripe/', include('xstripe.urls', namespace='stripe')),
+    re_path(r'^square/', include('xsquare.urls', namespace='square')),
+    re_path(r'^braintree/', include('xbraintree.urls', namespace='braintree')),
+    re_path(r'^mpay/', include('xmpesa.urls', namespace='mpesa')),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^admin-api/', include('rest_framework.urls', namespace='rest_framework')),
 ]

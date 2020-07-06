@@ -1,9 +1,6 @@
-import json
-
 from rest_framework import permissions, status
 from rest_framework import views
 from rest_framework.response import Response
-from xauth.utils import valid_str
 
 
 class BaseAPIView(views.APIView):
@@ -19,12 +16,8 @@ class BaseAPIView(views.APIView):
             else:
                 raise Exception(serializer.errors)
         except Exception as e:
-            first_error = e.args[0]
             response = Response(
-                data={
-                    'error': first_error if valid_str(first_error) else json.dumps(first_error),
-                    'metadata': e.args,
-                },
+                data=e.args,
                 status=status.HTTP_400_BAD_REQUEST,
             )
         return response

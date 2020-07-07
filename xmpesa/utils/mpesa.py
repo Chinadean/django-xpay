@@ -119,7 +119,7 @@ class Mpesa:
     def _create_callback_url(default=_DEFAULT_CALLBACK_URL):
         # remove any host that is an ip address or localhost
         hosts = [h for h in settings.ALLOWED_HOSTS if re.search(r'[a-zA-Z]+', h) and not re.search(r'localhost', h)]
-        return f'https://{hosts[0]}/mpay/lnm/response/' if len(hosts) > 0 else default
+        return f'https://{hosts[0]}/mpay/express/response/' if len(hosts) > 0 else default
 
 
 class _MpesaC2BPay(Mpesa):

@@ -3,7 +3,8 @@ from ..utils.mpesa import MpesaExpress
 
 
 class LNMSerializer(BasePaymentSerializer):
-    transaction_type = serializers.ChoiceField(choices=MpesaExpress.COMMAND_ID_CHOICES, default='CustomerPayBillOnline', )
+    transaction_type = serializers.ChoiceField(choices=MpesaExpress.COMMAND_ID_CHOICES,
+                                               default=MpesaExpress.COMMAND_IDS[0], )
     account_reference = serializers.CharField(
         max_length=255, allow_null=True,
         allow_blank=True, default=None,

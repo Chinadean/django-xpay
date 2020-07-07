@@ -8,9 +8,13 @@ class LNMView(views.CreateAPIView):
     serializer_class = express.LNMSerializer
 
 
-class LNMResponseView(views.RetrieveAPIView):
+class LNMResponseView(views.CreateRetrieveAPIView):
+    def post(self, request, format=None):
+        print(f'POST: {request.data}')  # TODO: Delete...
+        return Response(data=request.data, )
+
     def get(self, request, format=None):
-        print(request.data)  # TODO: Delete...
+        print(f'GET: {request.data}')  # TODO: Delete...
         return Response(data=request.data, )
 
 

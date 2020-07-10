@@ -1,12 +1,11 @@
 from rest_framework import status
 from rest_framework.response import Response
-from xauth.utils import get_wrapped_response
+from xauth.views import CreateAPIView
 
-from djangoxpay import views
 from . import serializers
 
 
-class PaymentView(views.CreateAPIView):
+class PaymentView(CreateAPIView):
     serializer_class = serializers.PaymentSerializer
 
     def post(self, request, format=None):
@@ -26,4 +25,4 @@ class PaymentView(views.CreateAPIView):
                 data=data.get('payment', ),
                 status=status.HTTP_200_OK,
             )
-        return get_wrapped_response(response)
+        return response

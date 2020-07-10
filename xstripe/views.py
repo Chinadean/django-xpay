@@ -1,11 +1,7 @@
-from xauth.utils import get_wrapped_response
+from xauth.views import CreateAPIView
 
-from djangoxpay import views
 from .serializers import ClientSecretSerializer
 
 
-class ClientSecretView(views.CreateAPIView):
+class ClientSecretView(CreateAPIView):
     serializer_class = ClientSecretSerializer
-
-    def post(self, request, format=None):
-        return get_wrapped_response(super().post(request, format))

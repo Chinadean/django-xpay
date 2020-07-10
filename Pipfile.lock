@@ -26,11 +26,11 @@
         },
         "braintree": {
             "hashes": [
-                "sha256:152fa9e3b30a7757db0061e1c022c944216bf881209376b28a3f07043cff009b",
-                "sha256:b8b18fd9d757af8b2dd45e49d1c90cad5692c95283d7bcb610e28d39db0a10bb"
+                "sha256:99a3889d60025bbecc2257cc8487901fed1393472b64567b59b7bc8c61b0852b",
+                "sha256:e112f6d5bc7954a8e569617a026931d61dc13e35bc0d6391e9e0fb28dfedbda3"
             ],
             "index": "pypi",
-            "version": "==4.1.0"
+            "version": "==4.2.0"
         },
         "cachecontrol": {
             "hashes": [
@@ -42,10 +42,10 @@
         },
         "certifi": {
             "hashes": [
-                "sha256:5ad7e9a056d25ffa5082862e36f119f7f7cec6457fa07ee2f8c339814b80c9b1",
-                "sha256:9cd41137dc19af6a5e03b630eefe7d1f458d964d406342dd3edf625839b944cc"
+                "sha256:5930595817496dd21bb8dc35dad090f1c2cd0adfaf21204bf6732ca5d8ee34d3",
+                "sha256:8fc0819f1f30ba15bdb34cceffb9ef04d99f420f68eb75d901e9560b8749fc41"
             ],
-            "version": "==2020.4.5.2"
+            "version": "==2020.6.20"
         },
         "cffi": {
             "hashes": [
@@ -121,19 +121,19 @@
         },
         "django": {
             "hashes": [
-                "sha256:5052b34b34b3425233c682e0e11d658fd6efd587d11335a0203d827224ada8f2",
-                "sha256:e1630333248c9b3d4e38f02093a26f1e07b271ca896d73097457996e0fae12e8"
+                "sha256:31a5fbbea5fc71c99e288ec0b2f00302a0a92c44b13ede80b73a6a4d6d205582",
+                "sha256:5457fc953ec560c5521b41fad9e6734a4668b7ba205832191bbdff40ec61073c"
             ],
             "markers": "python_version >= '3.6'",
-            "version": "==3.0.7"
+            "version": "==3.0.8"
         },
         "django-extensions": {
             "hashes": [
-                "sha256:2f81b618ba4d1b0e58603e25012e5c74f88a4b706e0022a3b21f24f0322a6ce6",
-                "sha256:b19182d101a441fe001c5753553a901e2ef3ff60e8fbbe38881eb4a61fdd17c4"
+                "sha256:2b96bb937329b4038809d0fa79c55f6c1e941bce5057ca9ff5f3207aadffcbb9",
+                "sha256:c4e8cff39a26bfb72438cd52ab37d760a2aa146b715b6cd27fa8b862ac29fdc5"
             ],
             "index": "pypi",
-            "version": "==2.2.9"
+            "version": "==3.0.2"
         },
         "django-render-block": {
             "hashes": [
@@ -143,11 +143,11 @@
         },
         "django-rest-xauth": {
             "hashes": [
-                "sha256:3ca6205a7b2e6bf0a610b2c7b034a4d6f66a733ea8a7ce9d85919998c38b7036",
-                "sha256:446773f213e3093e59aa6ac400032a69c07ee9c3a85933554eb4e383ea26b9e4"
+                "sha256:6ad8a782a214b5217bd108510eac9fd739cfd89a5a48f1aa8ac6a9176fc6c8b1",
+                "sha256:ee13852422b0d5d2f7fb7873215dd0422fc73bd933fc8282f41265a9d55f57e3"
             ],
             "index": "pypi",
-            "version": "==1.0.6"
+            "version": "==1.0.9"
         },
         "django-templated-email": {
             "hashes": [
@@ -165,11 +165,11 @@
         },
         "idna": {
             "hashes": [
-                "sha256:7588d1c14ae4c77d74036e8c22ff447b26d0fde8f007354fd48a7814db15b7cb",
-                "sha256:a068a21ceac8a4d63dbfd964670474107f541babbd2250d61922f029858365fa"
+                "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6",
+                "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
-            "version": "==2.9"
+            "version": "==2.10"
         },
         "jsonpickle": {
             "hashes": [
@@ -272,10 +272,10 @@
         },
         "squareup": {
             "hashes": [
-                "sha256:b6aa5f451388cb1d62f09140fe916b6caaba472ed98e1f86daae6e62181bdb0f"
+                "sha256:7b6399709e4f1ff682acb2effd3c26d217caf27139839fc58b7248fad0e21282"
             ],
             "index": "pypi",
-            "version": "==5.3.0.20200528"
+            "version": "==6.0.0.20200625"
         },
         "stripe": {
             "hashes": [

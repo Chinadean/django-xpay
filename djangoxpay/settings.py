@@ -80,8 +80,6 @@ REST_FRAMEWORK = {
 
 XAUTH = {
     'APP_NAME': 'Xently Pay',
-    'USER_PROFILE_SERIALIZER': 'user.serializers.ProfileSerializer',
-    'WRAP_DRF_RESPONSE': True,
     'USER_LOOKUP_FIELD': 'username',
     'PROFILE_ENDPOINT': r'profile/(?P<username>\w+)/',
 }
